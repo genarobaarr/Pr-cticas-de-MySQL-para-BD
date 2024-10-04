@@ -1,0 +1,90 @@
+mysql> Create database tintoreria;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> Show databases;
++--------------------+
+| Database           |
++--------------------+
+| hello_mysql        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tintoreria         |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> Use tintoreria
+Database changed
+mysql> create table cliente(idCLIENTE int, apellido_pat VARCHAR(20), apellido_mat VARCHAR(20), nombre VARCHAR(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables
+    -> ;
++----------------------+
+| Tables_in_tintoreria |
++----------------------+
+| cliente              |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> describe cliente
+    -> ;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| idCLIENTE    | int         | YES  |     | NULL    |       |
+| apellido_pat | varchar(20) | YES  |     | NULL    |       |
+| apellido_mat | varchar(20) | YES  |     | NULL    |       |
+| nombre       | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> drop table cliente
+    -> ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+
+mysql> create table tintoreria.cliente(
+    -> idCLIENTE INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    -> apellido_pat VARCHAR(30) NOT NULL,
+    -> apellido_mat VARCHAR(30) NOT NULL,
+    -> nombre VARCHAR(30) NOT NULL);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ALTER TABLE tintoreria.cliente CHANGE COLUMN apellido_mat apellido_mat VARCHAR(30) NULL;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe cliente
+    -> ;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| idCLIENTE    | int         | NO   | PRI | NULL    | auto_increment |
+| apellido_pat | varchar(30) | NO   |     | NULL    |                |
+| apellido_mat | varchar(30) | YES  |     | NULL    |                |
+| nombre       | varchar(30) | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE cliente ADD COLUMN direccion VARCHAR(45);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe cliente;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| idCLIENTE    | int         | NO   | PRI | NULL    | auto_increment |
+| apellido_pat | varchar(30) | NO   |     | NULL    |                |
+| apellido_mat | varchar(30) | YES  |     | NULL    |                |
+| nombre       | varchar(30) | NO   |     | NULL    |                |
+| direccion    | varchar(45) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> exit
